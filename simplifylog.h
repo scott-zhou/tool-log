@@ -13,8 +13,8 @@
 #define LOGCRITICAL	1
 
 
-#define logWrite(level,format) getLogInstance()->logwrite(level,"%s:%d:%s "format,__FILE__,__LINE__,__FUNCTION__)
-#define LogWrite(level,format,...)	getLogInstance()->logwrite(level,"%s:%d:%s "format,__FILE__,__LINE__,__FUNCTION__,__VA_ARGS__)
+#define logWrite(level,format) SimplifyLog::getLogInstance()->logwrite(level,"%s:%d:%s "format"\n",__FILE__,__LINE__,__FUNCTION__)
+#define LogWrite(level,format,...)	SimplifyLog::getLogInstance()->logwrite(level,"%s:%d:%s "format"\n",__FILE__,__LINE__,__FUNCTION__,__VA_ARGS__)
 
 class LogFile;
 

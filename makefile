@@ -1,6 +1,6 @@
 ####### Output directory
 LIBSDIR   = ./libs
-
+BINDIR    = ./bin
 
 CLOG=logfile.a
 CLOG_OBJ=logfile.o
@@ -8,10 +8,15 @@ CLOG_OBJ=logfile.o
 SLOG=simplifylog.a
 SLOG_OBJ=simplifylog.o
 
-all: ${LIBSDIR} $(CLOG) $(SLOG)
+TESTBIN=test
+
+all: ${LIBSDIR} ${BINDIR} $(CLOG) $(SLOG) $(TESTBIN)
 
 ${LIBSDIR}:
 	mkdir ${LIBSDIR}
+
+${BINDIR}:
+	mkdir ${BINDIR}
 
 clear:
 	rm -f *.o
@@ -20,6 +25,11 @@ clear:
           then \
             rm -rf ${LIBSDIR}/*; \
           fi
+	@if [ -d ${BINDIR} ];  \
+          then \
+            rm -rf ${BINDIR}/*; \
+          fi
+
 
 INCS   = -I./
 DFLAGS  =
@@ -41,5 +51,8 @@ $(SLOG):	$(SLOG_OBJ)
 	ar -r $(SLOG) $(SLOG_OBJ)
 	mv -f *.o ${LIBSDIR}
 	mv -f *.a ${LIBSDIR}
+
+$(TESTBIN):	test.cxx  $(DEP_INCS)
+	g++ -I$(INCS) -lpthread -Wall test.cxx -g -o $(BINDIR)/$(TESTBIN) $(LIBSDIR)/*.o 
 
 r: clear all
