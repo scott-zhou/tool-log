@@ -6,7 +6,7 @@
 #include <fcntl.h>
 #include <strings.h>
 #include <sys/time.h>
-
+#include <pthread.h>
 #include "logfile.h"
 
 

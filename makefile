@@ -37,7 +37,7 @@ LFLAGS =
 DEP_INCS = 
 
 $(CLOG_OBJ):	logfile.cxx  $(DEP_INCS)
-	g++ -c -g -O2 -lpthread -D__FLUSHLOG__ -D_STREAM_COMPAT $(INCS) $<
+	g++ -c -g -O2 -pthread -D__FLUSHLOG__ -D_STREAM_COMPAT $(INCS) $<
 
 $(CLOG):	$(CLOG_OBJ)
 	ar -r $(CLOG) $(CLOG_OBJ) 
@@ -45,7 +45,7 @@ $(CLOG):	$(CLOG_OBJ)
 	mv -f *.a ${LIBSDIR}
 
 $(SLOG_OBJ):	simplifylog.cxx  $(DEP_INCS)
-	g++ -c -g -lpthread -D__FLUSHLOG__ -D_STREAM_COMPAT $(INCS) $<
+	g++ -c -g -pthread -D__FLUSHLOG__ -D_STREAM_COMPAT $(INCS) $<
 
 $(SLOG):	$(SLOG_OBJ)
 	ar -r $(SLOG) $(SLOG_OBJ)
@@ -53,6 +53,6 @@ $(SLOG):	$(SLOG_OBJ)
 	mv -f *.a ${LIBSDIR}
 
 $(TESTBIN):	test.cxx  $(DEP_INCS)
-	g++ -I$(INCS) -lpthread -Wall test.cxx -g -o $(BINDIR)/$(TESTBIN) $(LIBSDIR)/*.o 
+	g++ -I$(INCS) -pthread -Wall test.cxx -g -o $(BINDIR)/$(TESTBIN) $(LIBSDIR)/*.o 
 
 r: clear all
