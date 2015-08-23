@@ -1,3 +1,8 @@
 /libs
 /bin
 *~
+log.config
+log.creator
+log.creator.user
+log.files
+log.includes
